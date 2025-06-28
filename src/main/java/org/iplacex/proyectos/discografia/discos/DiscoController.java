@@ -3,7 +3,6 @@ package org.iplacex.proyectos.discografia.discos;
 import java.util.List;
 import java.util.Optional;
 
-import org.iplacex.proyectos.discografia.artistas.Artista;
 import org.iplacex.proyectos.discografia.artistas.IArtistaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,15 +24,20 @@ public class DiscoController {
   @Autowired
   private IDiscoRepository discoRepo;
 
+  @Autowired
+  private IArtistaRepository artistaRepo;
 
 @PostMapping(
   value = "/disco",
   consumes = MediaType.APPLICATION_JSON_VALUE,
   produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public ResponseEntity<Object> HandlePostDiscoRequest(@RequestBody Disco disco){
-    // 
-    
+  public ResponseEntity<Object> HandlePostDiscoRequest(
+    @RequestBody Disco disco
+    ){
+    if(!artistaRepo.existsById(disco.idArtista)){
+          return new ResponseEntity<>(null, null, HttpStatus.NOT_FOUND);
+    }
     Disco discoTemp = discoRepo.insert(disco);
     return new ResponseEntity<>(discoTemp, null, HttpStatus.CREATED);
   }
