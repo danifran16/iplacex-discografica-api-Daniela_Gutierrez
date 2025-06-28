@@ -33,7 +33,7 @@ public class ArtistaController {
   consumes = MediaType.APPLICATION_JSON_VALUE,
   produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public ResponseEntity<Artista> HandleInsertArtistaRequest(@RequestBody Artista artista){
+  public ResponseEntity<Object> HandleInsertArtistaRequest(@RequestBody Artista artista){
     Artista artistaTemp = artistaRepo.insert(artista);
     return new ResponseEntity<>(artistaTemp, null, HttpStatus.CREATED);
   }
@@ -55,7 +55,7 @@ public class ArtistaController {
   value = "/artistas",
   produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public ResponseEntity<List<Artista>> HandleGetArtistaRequest(){
+  public ResponseEntity<List<Artista>> HandleGetArtistasRequest(){
     List<Artista> artistas = artistaRepo.findAll();
 
     return new ResponseEntity<>(artistas, null, HttpStatus.OK);

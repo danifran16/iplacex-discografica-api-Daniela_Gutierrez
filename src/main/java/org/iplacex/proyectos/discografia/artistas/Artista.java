@@ -13,5 +13,4 @@ public class Artista {
   public List<String> estilos;
   public int anioFundacion;
   public boolean estaActivo;
-  
 }
