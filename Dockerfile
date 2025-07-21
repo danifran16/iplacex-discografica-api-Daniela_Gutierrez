@@ -15,7 +15,7 @@ FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 
-COPY --from=builder /app/build/libs/*.jar discografica-api.jar
+COPY --from=builder /app/build/libs/*.jar discografia-1.jar
 
 EXPOSE 443
-CMD ["java", "-jar", "discografica-api.jar"]
+CMD ["java", "-jar", "discografia-1.jar"]
